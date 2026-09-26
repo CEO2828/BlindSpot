@@ -14,7 +14,7 @@
 
 - User selected GitHub account CEO2828. Repository URL is confirmed; 35 source/configuration/documentation files published to main at bf72ce03bc3f765107374d026acf432446f8b4cd.
 - User reports Atlas is set up in Safari. Safari control is working; existing Atlas database user is visible. No Atlas credentials used, writes performed, or live reads verified.
-- DigitalOcean is connected. Dashboard confirms account setup requires a payment method. GitHub authorization is prepared for BlindSpot only and awaits user confirmation. No resource created or paid hosting charge authorized.
+- DigitalOcean was dropped at the user's request on September 26 because it requires a billing method. Its deployment template and prize target are removed. No paid hosting is authorized; a no-payment replacement remains unconfirmed. Use the local demo in the meantime.
 - Live Gemini extraction remains disabled as supplied. The original handoff reports an eligibility issue; current eligibility/provider choice needs confirmation. No live model evaluation completed.
 - Human semantic sign-off, event URL, team details, category eligibility and final submission remain pending.
 - Docker is unavailable on this machine; container build is untested.
