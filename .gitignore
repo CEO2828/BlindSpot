@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+data/*-candidates*.json
+data/atlas-proof.json
+artifacts/
