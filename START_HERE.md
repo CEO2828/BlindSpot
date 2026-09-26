@@ -11,3 +11,5 @@ Published repository: https://github.com/CEO2828/BlindSpot
 GitHub verification passed: https://github.com/CEO2828/BlindSpot/actions/runs/36253839073
 
 Read `BUILD_STATUS.md` for actual verification and outstanding external steps. The submission draft describes only demonstrated integrations.
+
+Hosting update: DigitalOcean has been dropped. Skip its instructions in older downloads and PDFs. A no-payment replacement is pending; the local demo remains the current run path.
