@@ -10,7 +10,7 @@ A small, source-backed research workspace built for the ShellHacks handoff. Pyth
 - **Actual public evidence:** short passages checked against downloaded NVIDIA FY2026, AMD FY2025, and Broadcom FY2025 filing bytes. The dataset is an AI-assisted, source-checked seed, not output from a Gemini API call and not a claim of human review.
 - **Atlas:** read/write and read-back verification code implemented. No live connection or write has been verified. The UI visibly says local cache until actual Atlas reads succeed.
 - **Hosting:** DigitalOcean was dropped at the user's request because setup requires a billing method. A no-payment replacement is pending. The portable Dockerfile remains; no public deployment is verified.
-- **Gemini:** extraction schemas, prompts, offset validation, candidate handling and local review workflow prepared. Live extraction is NOT enabled. Google's API/AI Studio terms require age 18+. Eligibility must be resolved with event sponsor staff; no account workarounds are provided. Terms: https://ai.google.dev/gemini-api/terms
+- **Gemini:** CLI extraction is implemented using Google GenAI with bounded input/output, structured JSON and exact quote checks. Set `GEMINI_API_KEY` and optional `GEMINI_MODEL` (default `gemini-3.8-flash`). Candidates remain pending review. Live authentication currently fails; no successful extraction is claimed.
 - **Not included:** voice, custom domain, full-document upload, live prices, brokerage access, trading, predictions, authentication, or additional companies.
 
 ## Run the working local demo
@@ -132,7 +132,7 @@ Tests include source tampering, absent quotes, unresolved denominators, duplicat
 
 Before submission: obtain the GitHub URL, actual hosting URL if deployed, correct name/email/Discord tag, choose only eligible categories, and record a backup demo. The supplied handoff's target is Sunday September 27 at 10:30 AM Miami time, ahead of its stated 11 AM deadline. Event details are taken from the user-provided handoff, not newly verified here.
 
-Intended categories remain conditional: Best Overall and Blackstone depend on the completed entry; Atlas requires real execution; DigitalOcean has been dropped; Gemini is pending provider eligibility and genuine extraction; first-time eligibility requires organizer confirmation. Voice and domain extras are not built.
+Intended categories remain conditional: Best Overall and Blackstone depend on the completed entry; Atlas requires real execution; DigitalOcean has been dropped; Gemini is pending successful authentication and genuine extraction; first-time eligibility requires organizer confirmation. Voice and domain extras are not built.
 
 ## AI and external contributions
 

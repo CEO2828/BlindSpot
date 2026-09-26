@@ -1,4 +1,4 @@
-"""Offline, bounded ingestion. No public endpoint can trigger model calls."""
+"""Bounded CLI ingestion. No public endpoint can trigger model calls."""
 import hashlib
 import json
 import os
@@ -39,7 +39,24 @@ revenue, portfolio value, risk or loss. Do not generate offsets or dates.'''
 
 
 def extract(snapshot, issuer_name, model, client):
-    raise RuntimeError('Live Gemini extraction is not enabled. Provider eligibility must be resolved with the event sponsor. The source-backed local app remains usable.')
+    if not snapshot.strip() or len(snapshot.encode('utf-8')) > 100_000:
+        raise ValueError('Excerpt must contain text and be at most 100 KB.')
+    response = client.interactions.create(
+        model=model,
+        input=INSTRUCTIONS + '\nSource data (JSON):\n' + json.dumps(
+            {'issuer': issuer_name, 'excerpt': snapshot}, ensure_ascii=False),
+        response_format={'type': 'text', 'mime_type': 'application/json',
+                         'schema': Extraction.model_json_schema()},
+        generation_config={'max_output_tokens': 2048},
+    )
+    result = Extraction.model_validate_json(response.output_text)
+    if not result.relationships and not result.no_match_reason:
+        raise ValueError('No-match output requires an explanation.')
+    for candidate in result.relationships:
+        quote_offsets(snapshot, candidate.verbatim_quote)
+        if len(candidate.verbatim_quote.split()) > 25:
+            raise ValueError('Candidate quote exceeds the 25-word limit.')
+    return result
 
 
 def build_candidates(extraction, source_document, issuer_entity, model):
@@ -77,4 +94,8 @@ def build_candidates(extraction, source_document, issuer_entity, model):
 
 
 def configured_client():
-    raise RuntimeError('Gemini access is paused because its API requires users to be 18 or older. Ask the event sponsor about eligible alternatives.')
+    from google import genai
+    key = os.getenv('GEMINI_API_KEY')
+    if not key:
+        raise ValueError('GEMINI_API_KEY is not configured.')
+    return genai.Client(api_key=key, http_options={'timeout': 60000}), os.getenv('GEMINI_MODEL', 'gemini-3.8-flash')

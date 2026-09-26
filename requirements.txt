@@ -7,3 +7,4 @@ pymongo==4.18.2
 beautifulsoup4==4.15.0
 python-dotenv==1.2.3
 socksio==1.0.0
+google-genai==2.25.0
