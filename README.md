@@ -102,7 +102,7 @@ Successful verification creates a sanitized `data/atlas-proof.json`. Restart the
 
 ## DigitalOcean deployment
 
-The checked-in `deploy/digitalocean-app.yaml` is a template, not an active deployment. It expects this folder to be the root of the GitHub repository. Replace its repository placeholder with the actual owner/repo and use branch `main`. The Dockerfile runs the same Python service on port 8080 as a non-root user.
+The checked-in `deploy/digitalocean-app.yaml` is a template, not an active deployment. It expects this folder to be the root of the GitHub repository. It targets `CEO2828/BlindSpot` on branch `main`. The Dockerfile runs the same Python service on port 8080 as a non-root user.
 
 Deployment target: DigitalOcean App Platform. The available DigitalOcean integration may instead provision a Droplet workspace; inspect its actual capabilities before choosing that path. Do not provision paid resources without knowing the user's intended account and cost authorization.
 
