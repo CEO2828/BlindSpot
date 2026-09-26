@@ -43,6 +43,7 @@ def extract(snapshot, issuer_name, model, client):
         raise ValueError('Excerpt must contain text and be at most 100 KB.')
     response = client.interactions.create(
         model=model,
+        timeout=45.0,
         input=INSTRUCTIONS + '\nSource data (JSON):\n' + json.dumps(
             {'issuer': issuer_name, 'excerpt': snapshot}, ensure_ascii=False),
         response_format={'type': 'text', 'mime_type': 'application/json',
@@ -98,4 +99,4 @@ def configured_client():
     key = os.getenv('GEMINI_API_KEY')
     if not key:
         raise ValueError('GEMINI_API_KEY is not configured.')
-    return genai.Client(api_key=key, http_options={'timeout': 60000}), os.getenv('GEMINI_MODEL', 'gemini-3.8-flash')
+    return genai.Client(api_key=key, http_options={'timeout': 45000, 'retry_options': {'attempts': 0}}), os.getenv('GEMINI_MODEL', 'gemini-3.8-flash')

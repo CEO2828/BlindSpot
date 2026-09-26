@@ -8,9 +8,9 @@ A small, source-backed research workspace built for the ShellHacks handoff. Pyth
 
 - **Working and tested locally:** example portfolio, three disclosed TSMC relationships, fixed diagram, evidence selection, editable amounts, add/remove supported companies, reset, deterministic cents arithmetic, explicit unassessed value, keyboard access, responsive layout, and error recovery.
 - **Actual public evidence:** short passages checked against downloaded NVIDIA FY2026, AMD FY2025, and Broadcom FY2025 filing bytes. The dataset is an AI-assisted, source-checked seed, not output from a Gemini API call and not a claim of human review.
-- **Atlas:** read/write and read-back verification code implemented. No live connection or write has been verified. The UI visibly says local cache until actual Atlas reads succeed.
+- **Atlas:** live publishing and read-back succeeded for three source-checked relationships. The running local app reports Atlas connected.
 - **Hosting:** DigitalOcean was dropped at the user's request because setup requires a billing method. A no-payment replacement is pending. The portable Dockerfile remains; no public deployment is verified.
-- **Gemini:** CLI extraction is implemented using Google GenAI with bounded input/output, structured JSON and exact quote checks. Set `GEMINI_API_KEY` and optional `GEMINI_MODEL` (default `gemini-3.8-flash`). Candidates remain pending review. Live authentication currently fails; no successful extraction is claimed.
+- **Gemini:** CLI extraction is implemented using Google GenAI with bounded input/output, structured JSON and exact quote checks. Set `GEMINI_API_KEY` and optional `GEMINI_MODEL` (default `gemini-3.8-flash`). Candidates remain pending review. Live authentication succeeds; a competitor-only smoke test returned zero relationships. Filing candidates require semantic review before publication.
 - **Not included:** voice, custom domain, full-document upload, live prices, brokerage access, trading, predictions, authentication, or additional companies.
 
 ## Run the working local demo

@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-09-26T19:57:56.955064+00:00",
+  "atlas": {
+    "ping": "passed",
+    "written_and_read_relationships": 3,
+    "running_app_data_mode": "atlas",
+    "browser_smoke": "passed"
+  },
+  "gemini": {
+    "model": "gemini-3.8-flash",
+    "authentication": "passed",
+    "competitor_only_test": "passed: zero relationships",
+    "supplier_extraction": "not verified; requests exceeded the smoke-test window and were stopped",
+    "scope": "Smoke tests only; not held-out accuracy evaluation"
+  }
+}
