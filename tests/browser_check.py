@@ -1,0 +1,80 @@
+"""Run explicitly: python tests/browser_check.py. Starts its own local test server."""
+import json,os,socket,subprocess,sys,time
+from pathlib import Path
+from urllib.request import build_opener,ProxyHandler
+from playwright.sync_api import sync_playwright,expect
+root=Path(__file__).resolve().parents[1]
+artifacts=root/'artifacts';artifacts.mkdir(exist_ok=True)
+with socket.socket() as s:
+    s.bind(('127.0.0.1',0));port=s.getsockname()[1]
+server=subprocess.Popen([sys.executable,'-m','uvicorn','app.main:app','--host','127.0.0.1','--port',str(port)],cwd=root,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
+base=f'http://127.0.0.1:{port}'
+checks=[]
+try:
+    opener=build_opener(ProxyHandler({}))
+    for attempt in range(60):
+        try:opener.open(base+'/health',timeout=.3);break
+        except Exception:time.sleep(.1)
+    else:raise RuntimeError('Test server did not start')
+    with sync_playwright() as p:
+        browser=p.chromium.launch(headless=True,args=['--no-sandbox'])
+        page=browser.new_page(viewport={'width':1440,'height':1050},device_scale_factor=1)
+        errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+        page.goto(base);expect(page.locator('#data-status')).to_contain_text('Local cache')
+        pending=[]
+        page.route('**/api/analyze',lambda route:pending.append(route))
+        page.get_by_role('button',name='Reveal connections').click()
+        page.locator('#amount-0').fill('2600')
+        expect(page.locator('#reveal')).to_be_enabled()
+        for route in pending:route.continue_()
+        page.unroute('**/api/analyze')
+        page.get_by_role('button',name='Reset example').click()
+        expect(page.locator('#connected')).to_have_text('$6,000')
+        checks.append('Editing during first request does not leave Reveal disabled')
+        expect(page.locator('#connected-percent')).to_have_text('60% of total');checks.append('Reveal: $6,000 / $10,000 = 60%')
+        page.get_by_role('button',name='Inspect NVIDIA evidence',exact=True).click()
+        expect(page.locator('.evidence-title')).to_have_text('NVIDIA → TSMC')
+        page.screenshot(path=str(artifacts/'BLINDSPOT_desktop.png'),full_page=True)
+        for name in ['AMD','Broadcom']:
+            page.get_by_role('button',name=f'Inspect {name} evidence',exact=True).click()
+            expect(page.locator('.evidence-title')).to_have_text(name+' → TSMC')
+        expect(page.locator('.evidence-fact')).to_contain_text('contract manufacturers');checks.append('All three evidence selectors and Broadcom denominator')
+        page.get_by_role('button',name='Remove AVGO',exact=True).click()
+        expect(page.locator('#connected-percent')).to_have_text('52.94% of total')
+        expect(page.locator('#total')).to_have_text('$8,500');checks.append('Removing AVGO changes denominator')
+        expect(page.locator('#evidence')).to_contain_text('Select a connection')
+        page.locator('#amount-0').fill('3000.01')
+        expect(page.locator('#connected')).to_have_text('$5,000.01');checks.append('Input edit recalculates in cents')
+        page.locator('#amount-0').fill('-1')
+        expect(page.locator('#form-error')).to_be_visible();checks.append('Invalid input preserves editor and shows error')
+        page.get_by_role('button',name='Reset example').click()
+        expect(page.locator('#connected-percent')).to_have_text('60% of total')
+        page.locator('.edge-hit').first.focus();page.keyboard.press('Enter')
+        expect(page.locator('.evidence-title')).to_have_text('NVIDIA → TSMC');checks.append('Keyboard edge selection')
+        for selector in ['#amount-0','#amount-1','#amount-2','#unassessed']:page.locator(selector).fill('0')
+        expect(page.locator('#total')).to_have_text('$0')
+        expect(page.locator('#graph')).to_contain_text('Start with an amount');checks.append('Zero portfolio explicit empty state')
+        page.get_by_role('button',name='Reset example').click()
+        expect(page.locator('#connected')).to_have_text('$6,000')
+        page.route('**/api/analyze',lambda route:route.abort())
+        page.locator('#amount-0').fill('2600')
+        expect(page.locator('#form-error')).to_be_visible()
+        expect(page.locator('#amount-0')).to_have_value('2600');checks.append('Network failure preserves inputs')
+        page.unroute('**/api/analyze')
+        page.get_by_role('button',name='Reveal connections').click()
+        expect(page.locator('#connected')).to_have_text('$6,100')
+        page.get_by_role('button',name='Reset example').click()
+        expect(page.locator('#connected')).to_have_text('$6,000')
+        for width in [1280,390]:
+            page.set_viewport_size({'width':width,'height':844})
+            assert page.evaluate('() => document.documentElement.scrollWidth <= window.innerWidth'),f'Horizontal overflow at {width}'
+            page.get_by_role('button',name='Inspect NVIDIA evidence',exact=True).click()
+            expect(page.locator('.evidence-title')).to_have_text('NVIDIA → TSMC')
+            page.screenshot(path=str(artifacts/f'BLINDSPOT_{width}.png'),full_page=True)
+        checks.append('1280px laptop and 390px mobile: no horizontal overflow')
+        assert not errors,errors
+        browser.close()
+    (artifacts/'browser-results.json').write_text(json.dumps({'passed':checks,'console_errors':errors},indent=2))
+    print(json.dumps({'passed':checks,'console_errors':errors},indent=2))
+finally:
+    server.terminate();server.wait(timeout=10)

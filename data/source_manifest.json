@@ -1,0 +1,26 @@
+[
+  {
+    "document_id": "nvda-2026-01-25",
+    "issuer_id": "NVDA",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+    "filing_date": "2026-02-25",
+    "fiscal_period_end": "2026-01-25",
+    "source_hash": "a67bf005fe138d05d5ac6c00a6d38ad016a6ac693e1072315ff2137d8de18c13"
+  },
+  {
+    "document_id": "amd-2025-12-27",
+    "issuer_id": "AMD",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+    "filing_date": "2026-02-04",
+    "fiscal_period_end": "2025-12-27",
+    "source_hash": "ac3f9be077866bbe25aa49a6e8ba16cca822d3c6da0cc07768c73aef3d2c9694"
+  },
+  {
+    "document_id": "avgo-2025-11-02",
+    "issuer_id": "AVGO",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/avgo-20251102.htm",
+    "filing_date": "2025-12-18",
+    "fiscal_period_end": "2025-11-02",
+    "source_hash": "1e8a551eb32706266bd83fe354d485fe7251c78a9d02fb7b38caa5b406189cf2"
+  }
+]
