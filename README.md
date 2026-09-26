@@ -9,7 +9,7 @@ A small, source-backed research workspace built for the ShellHacks handoff. Pyth
 - **Working and tested locally:** example portfolio, three disclosed TSMC relationships, fixed diagram, evidence selection, editable amounts, add/remove supported companies, reset, deterministic cents arithmetic, explicit unassessed value, keyboard access, responsive layout, and error recovery.
 - **Actual public evidence:** short passages checked against downloaded NVIDIA FY2026, AMD FY2025, and Broadcom FY2025 filing bytes. The dataset is an AI-assisted, source-checked seed, not output from a Gemini API call and not a claim of human review.
 - **Atlas:** read/write and read-back verification code implemented. No live connection or write has been verified. The UI visibly says local cache until actual Atlas reads succeed.
-- **DigitalOcean:** Dockerfile and App Platform configuration template prepared. No cloud URL, deployment, container build, or sponsor credit has been verified.
+- **Hosting:** DigitalOcean was dropped at the user's request because setup requires a billing method. A no-payment replacement is pending. The portable Dockerfile remains; no public deployment is verified.
 - **Gemini:** extraction schemas, prompts, offset validation, candidate handling and local review workflow prepared. Live extraction is NOT enabled. Google's API/AI Studio terms require age 18+. Eligibility must be resolved with event sponsor staff; no account workarounds are provided. Terms: https://ai.google.dev/gemini-api/terms
 - **Not included:** voice, custom domain, full-document upload, live prices, brokerage access, trading, predictions, authentication, or additional companies.
 
@@ -54,7 +54,7 @@ This is a solo project; logical ownership below keeps edits contained.
 | Storage | `app/services/store.py`, `scripts/publish_atlas.py` | Atlas reads/writes, explicit fallback |
 | Extraction/review | `app/services/ingest.py`, `scripts/review_evidence.py` | Offline contracts; live extraction pending |
 | UI | `app/templates/`, `app/static/` | Inputs, selection, SVG, responsive layout |
-| Hosting | `Dockerfile`, `deploy/` | DigitalOcean deployment configuration |
+| Hosting | `Dockerfile` | Portable Python service; no-payment host pending |
 
 `POST /api/analyze` accepts:
 
@@ -100,13 +100,13 @@ python -m scripts.publish_atlas data/reviewed_seed-reviewed.json
 
 Successful verification creates a sanitized `data/atlas-proof.json`. Restart the app with its runtime Atlas settings and check that `/health` and the visible footer both report Atlas. Publishing the seed is genuine database use, but does **not** prove Gemini use.
 
-## DigitalOcean deployment
+## Hosting plan
 
-The checked-in `deploy/digitalocean-app.yaml` is a template, not an active deployment. It expects this folder to be the root of the GitHub repository. It targets `CEO2828/BlindSpot` on branch `main`. The Dockerfile runs the same Python service on port 8080 as a non-root user.
+DigitalOcean is no longer a deployment target or intended prize entry. Do not follow its setup instructions in older handoffs or PDFs. No paid resource is authorized. The current demo runs locally; a replacement host that meets the no-payment requirement has not been confirmed.
 
-Deployment target: DigitalOcean App Platform. The available DigitalOcean integration may instead provision a Droplet workspace; inspect its actual capabilities before choosing that path. Do not provision paid resources without knowing the user's intended account and cost authorization.
+The portable Dockerfile runs the Python service as a non-root user on port 8080, overridable with `PORT`. Any future host must support this service, keep `MONGODB_URI` in secret runtime settings, and allow the appropriate Atlas outbound connections. Set `MONGODB_DB=blindspot`. An extraction API key is not needed by the read-only runtime.
 
-Add `MONGODB_URI` through encrypted runtime settings and `MONGODB_DB=blindspot`. An extraction API key is not needed by this read-only runtime. Keep all secrets out of the app spec. Verify the deployed URL from a second device: reveal, all evidence cards, amount edit, refresh, source mode. Never claim DigitalOcean deployment based on a local server or another provider's preview.
+Before claiming deployment, verify the public URL from a second device: reveal, every evidence card, amount edit, refresh, and actual source mode. Keep the local demo as backup.
 
 ## Verification
 
@@ -132,7 +132,7 @@ Tests include source tampering, absent quotes, unresolved denominators, duplicat
 
 Before submission: obtain the GitHub URL, actual hosting URL if deployed, correct name/email/Discord tag, choose only eligible categories, and record a backup demo. The supplied handoff's target is Sunday September 27 at 10:30 AM Miami time, ahead of its stated 11 AM deadline. Event details are taken from the user-provided handoff, not newly verified here.
 
-Intended categories remain conditional: Best Overall and Blackstone depend on the completed entry; Atlas and DigitalOcean require real execution; Gemini is pending provider eligibility and genuine extraction; first-time eligibility requires organizer confirmation. Voice and domain extras are not built.
+Intended categories remain conditional: Best Overall and Blackstone depend on the completed entry; Atlas requires real execution; DigitalOcean has been dropped; Gemini is pending provider eligibility and genuine extraction; first-time eligibility requires organizer confirmation. Voice and domain extras are not built.
 
 ## AI and external contributions
 
