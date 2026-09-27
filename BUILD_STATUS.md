@@ -1,3 +1,5 @@
+> Public deployment is now verified. See [DEPLOYMENT_RESULT.md](DEPLOYMENT_RESULT.md) for current hosting status. The following records the build checkpoint.
+
 # Build status — 2026-09-26
 
 Implemented premium navy/teal workspace, responsive portfolio editor, evidence graph with supplier focus, source inspector, 23-company search, coverage browser, separate pending review queue, comparisons, local save/restore and honest unavailable quote state. Original FastAPI architecture and source-reviewed evidence preserved.
