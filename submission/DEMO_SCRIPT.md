@@ -1,25 +1,19 @@
-# Three-minute demo script
+# Three-minute demo
 
-## 0:00–0:30 — The problem
-“Three cafés can look different but buy bread from the same bakery. Investments can have a similar connection underneath. BLINDSPOT helps you inspect disclosed supplier relationships across holdings.”
+0:00–0:20 — “Different stocks can share a supplier. BLINDSPOT lets you inspect the disclosure behind that connection.” Show the real workspace.
 
-## 0:30–1:00 — Reveal
-Click Reveal connections.
-“This example contains $10,000. NVIDIA, AMD, and Broadcom represent $6,000, or 60%, and all have a disclosed TSMC relationship in our selected filings. The $4,000 we have not assessed stays in the total.”
+0:20–0:50 — Reveal the default $10,000 portfolio. Explain $6,000/60% is held in three companies with TSMC links, not predicted loss. $4,000 remains unassessed in the denominator.
 
-## 1:00–1:45 — Inspect evidence
-Select NVIDIA, then AMD, then Broadcom.
-“Each connection has a source excerpt, filing date, and scope. These companies describe different manufacturing arrangements. Broadcom's 95% figure concerns wafers manufactured by its contract manufacturers in fiscal 2025. It does not mean 95% of revenue or investment value.”
+0:50–1:25 — Select NVIDIA, AMD, then Broadcom. Show distinct excerpts, reporting/filing dates and source links. Broadcom's approximately 95% has its own manufacturing denominator. Point out honest AI-assisted review provenance.
 
-## 1:45–2:15 — Change the portfolio
-Remove AVGO. Then edit NVIDIA to 3000.01.
-“Removing Broadcom changes both the connected holdings and total. We now have $4,500 of $8,500, or 52.94%. Amount edits recalculate through the backend using integer cents.”
+1:25–1:50 — Remove AVGO: $4,500 of $8,500 = 52.94%. Reset; add an unsupported ticker with $100, showing the total increases while reviewed coverage does not. Save locally and restore.
 
-## 2:15–2:45 — Architecture
-“FastAPI serves the interface and validates portfolio inputs. The evidence contains hashes and exact quote offsets. This demo uses the local source-checked dataset, as the footer shows. Live database and extraction integrations are not part of this recording.”
+1:50–2:15 — Open Coverage: 23 searchable identities, only 3 source-checked companies. Search Ambiq; show pending review. Candidates cannot silently become analysis facts.
 
-## 2:45–3:00 — Close
-Reset example.
-“BLINDSPOT makes a shared supplier connection inspectable. This initial index covers three companies and one supplier. It supports research; it does not forecast investment outcomes.”
+2:15–2:40 — Compare NVDA and AMD; both have indexed TSMC links. Select Intel to demonstrate missing evidence, not proof of independence. Prices are unavailable; manual holdings still work.
 
-The included backup video is a shorter silent walkthrough with captions. This script is available for a narrated presentation.
+2:40–3:00 — Show actual storage mode. Atlas has been tested locally; labeled cache supports offline demos. AI extraction and public hosting are not claimed unless independently verified at demo time. End on source evidence.
+
+## Recording checklist
+
+A short silent browser-flow WebM is supplied as a backup, not a narrated three-minute submission video. To make the final video, record only the app window at 1440×1050 with the above narration, keep credential/admin tabs out of frame, verify audible playback and readable evidence, then upload under the user's account. Use the actual public URL only after deployment; otherwise label the laptop demo honestly.

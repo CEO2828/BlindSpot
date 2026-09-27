@@ -1,0 +1,13 @@
+# API contracts
+
+All APIs are same-origin and unauthenticated read/analysis surfaces. There is no public ingestion or publishing endpoint. Values are integer USD cents. Error 422 denotes validation; POST bodies over 16 KiB return 413. No credentials are returned.
+
+- GET /api/companies → array: entity_id, ticker, name, identity metadata when available, coverage_status, supplier_count, document_id, fiscal_period_end. Status: reviewed / pending_review / reviewed_no_match / unsupported. Catalog is independent of approved coverage.
+- POST /api/analyze accepts `{"positions":[{"ticker":"NVDA","amount_cents":250000}],"unassessed_amount_cents":400000}`. Maximum 30 positions, ticker 1–12 characters, nonnegative strict integer cents and total ≤100,000,000,000 cents. Duplicate tickers aggregate. Result: total_cents, assessed_cents, unassessed_cents, holdings, suppliers, relationships, data_mode, dataset_provenance, filing_dates, warnings. Each supplier counts each holding once; groups may overlap. Unsupported/pending amounts remain unassessed and in total.
+- GET /api/evidence/{relationship_id} → approved record, company_name, supplier_name, quote, document dates/link/hash/snapshot fields, percentage plus denominator/period, reviewer, data_mode, warnings. Unknown or pending record: 404.
+- GET /health → status=ok, database=connected|unavailable, data_mode=atlas|local_cache. Cache availability is healthy; this is not proof of Atlas by itself. Store validates and reads collections for Atlas mode.
+- GET /api/compare?left=NVDA&right=AMD → two companies with coverage, reviewed relationships (supplier, scope, filing date, period, source URL), manufacturing_model=null when unindexed, shared_supplier_ids, data_mode, note. Missing evidence does not establish independence.
+- GET /api/review-queue → candidates and research_log. Candidates include bounded normalized source snapshot, exact quote offsets, raw and snapshot SHA256, filing metadata, matched quote status and pending semantic review. They never enter approved graph calculations.
+- GET /api/quotes?tickers=NVDA,AMD → quotes (ticker, price, currency, as_of, source, status) and reason. No provider is configured: all values null except ticker/status=unavailable. Maximum 30 symbols. No outbound calls, cache or stale prices exist to misrepresent; add provider caching/timeouts before enabling real quotes.
+
+Atlas failure returns the last valid in-process cache, or source-checked bundled seed on a cold start, with visible mode and warning. Comparisons expose data_mode. Browser save uses localStorage key blindspot-portfolio-v1 and has no account/server synchronization.

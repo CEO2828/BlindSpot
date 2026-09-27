@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: blindspot
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: PORT
+        value: "8080"

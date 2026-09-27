@@ -1,0 +1,110 @@
+{
+  "candidates": [
+    {
+      "candidate_id": "ambq-tsmc-candidate",
+      "issuer_id": "AMBQ",
+      "supplier_name": "TSMC",
+      "relationship_type": "manufacturing_supplier",
+      "product_scope": "Semiconductor wafer fabrication",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526094004/ambq-20251231.htm",
+      "accession": "0001193125-26-094004",
+      "filing_date": "2026-03-05",
+      "fiscal_period_end": "2025-12-31",
+      "verbatim_quote": "We contract with TSMC to produce semiconductor wafers.",
+      "extracted_text": "ts by, for example, optimizing flow steps and improving yields. \u2022 Wafer Fabrication. We use various generations of semiconductor processes to develop and manufacture our products. We contract with TSMC to produce semiconductor wafers. \u2022 Packaging and Testing. Upon the completion of processing at the foundry, we use third-party contractors for packaging and testing, including the ASE group, King Yuan Electronics",
+      "quote_start": 180,
+      "quote_end": 234,
+      "source_hash": "c252016b99d2d8ad4ad1c5d6f9ee2cc40713c5dab28f9fd0f9832e0958d8c9df",
+      "snapshot_hash": "0ccbb23c49499719534cd27de6b094f56027292c708099b12b74bcd3ec71295e",
+      "snapshot_scope": "Bounded whitespace-normalized filing excerpt",
+      "quote_verification": "matched",
+      "semantic_review_status": "pending_review",
+      "reviewer": null,
+      "retrieved_at": "2026-09-26"
+    },
+    {
+      "candidate_id": "algm-umc-candidate",
+      "issuer_id": "ALGM",
+      "supplier_name": "UMC",
+      "relationship_type": "manufacturing_supplier",
+      "product_scope": "Semiconductor wafer fabrication",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/866291/000119312526233537/algm-20260327.htm",
+      "accession": "0001193125-26-233537",
+      "filing_date": "2026-05-21",
+      "fiscal_period_end": "2026-03-27",
+      "verbatim_quote": "Our primary fab partners currently include UMC, PSL, Tower and TSMC.",
+      "extracted_text": "igh demand and establish wafer process technology collaborations. We have a fabless business model that provides us with enhanced security of supply and manufacturing flexibility. Our primary fab partners currently include UMC, PSL, Tower and TSMC. We have master service agreements with all primary foundry partners, and we have also engaged in long-term supply agreements with some of our foundry partners. AMPI is our primary",
+      "quote_start": 180,
+      "quote_end": 248,
+      "source_hash": "4cb1fe13a53897813f533d75478ac12a01746e6998fc040ee1c59c05d351278d",
+      "snapshot_hash": "3abc0124c0b51c25c5fdefee877af7e748189cb8d74b2b257416f8538c2d3797",
+      "snapshot_scope": "Bounded whitespace-normalized filing excerpt",
+      "quote_verification": "matched",
+      "semantic_review_status": "pending_review",
+      "reviewer": null,
+      "retrieved_at": "2026-09-26"
+    },
+    {
+      "candidate_id": "crus-globalfoundries-candidate",
+      "issuer_id": "CRUS",
+      "supplier_name": "GLOBALFOUNDRIES",
+      "relationship_type": "manufacturing_supplier",
+      "product_scope": "Semiconductor wafer fabrication",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/772406/000077240626000018/crus-20260328.htm",
+      "accession": "0000772406-26-000018",
+      "filing_date": "2026-05-21",
+      "fiscal_period_end": "2026-03-28",
+      "verbatim_quote": "We use a variety of foundries in the production of wafers, primarily supplied by GLOBALFOUNDRIES Inc., (\"GlobalFoundries\") and Taiwan Semiconductor Manufacturing Company, Limited (\"TSMC\").",
+      "extracted_text": "ears 2026, 2025, or 2024. 4 Table of Contents Manufacturing As a fabless semiconductor company, we contract with third parties for wafer fabrication and product assembly and test. We use a variety of foundries in the production of wafers, primarily supplied by GLOBALFOUNDRIES Inc., (\"GlobalFoundries\") and Taiwan Semiconductor Manufacturing Company, Limited (\"TSMC\"). In fiscal year 2022, the Company entered into a Capacity Reservation and Wafer Supply Commitment Agreement with GlobalFoundries to reserve capacity and set wafer pricing for produ",
+      "quote_start": 180,
+      "quote_end": 368,
+      "source_hash": "0c6132f5af4fbede117dc4878299eb5d31fefdf9994a1cce7d564bf098f3863d",
+      "snapshot_hash": "c32b16b99a0a887ed58885969258fa7be7142b49e41b8bd336ec0e17daa22c89",
+      "snapshot_scope": "Bounded whitespace-normalized filing excerpt",
+      "quote_verification": "matched",
+      "semantic_review_status": "pending_review",
+      "reviewer": null,
+      "retrieved_at": "2026-09-26"
+    }
+  ],
+  "research_log": [
+    {
+      "ticker": "AMBQ",
+      "status": "candidate_prepared",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526094004/ambq-20251231.htm",
+      "note": "Full filing and SEC index retrieved; quote matching is not human semantic approval."
+    },
+    {
+      "ticker": "ALGM",
+      "status": "candidate_prepared",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/866291/000119312526233537/algm-20260327.htm",
+      "note": "Full filing and SEC index retrieved; quote matching is not human semantic approval."
+    },
+    {
+      "ticker": "CRUS",
+      "status": "candidate_prepared",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/772406/000077240626000018/crus-20260328.htm",
+      "note": "Full filing and SEC index retrieved; quote matching is not human semantic approval."
+    },
+    {
+      "ticker": "QCOM",
+      "status": "deferred",
+      "note": "SEC identity checked; relationship research deferred after bounded three-filing batch. No absence claim."
+    },
+    {
+      "ticker": "INTC",
+      "status": "deferred",
+      "note": "SEC identity checked; relationship research deferred after bounded three-filing batch. No absence claim."
+    },
+    {
+      "ticker": "CRDO",
+      "status": "deferred",
+      "note": "SEC identity checked; relationship research deferred after bounded three-filing batch. No absence claim."
+    },
+    {
+      "ticker": "MediaTek",
+      "status": "deferred",
+      "note": "Exchange/instrument verification deferred; not added to catalog."
+    }
+  ]
+}

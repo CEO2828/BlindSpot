@@ -81,7 +81,8 @@ def test_api_health_evidence_and_validation():
     with TestClient(app) as c:
         assert c.get('/').status_code==200
         health=c.get('/health').json(); assert health['data_mode']=='local_cache' and health['database']=='unavailable'
-        companies=c.get('/api/companies').json();assert len(companies)==3
+        companies=c.get('/api/companies').json();assert len(companies)==23
+        assert sum(x["coverage_status"]=="reviewed" for x in companies)==3
         r=c.get('/api/evidence/avgo-tsmc-2025-11-02');assert r.status_code==200
         e=r.json(); assert e['disclosed_percentage']==95 and 'contract manufacturers' in e['percentage_denominator']
         assert c.get('/api/evidence/missing').status_code==404
@@ -128,3 +129,25 @@ def test_reviewed_no_match_is_distinct(bundle):
     assert r['assessed_cents']==100
     assert r['holdings'][0]['coverage_status']=='no_supported_relationship'
     assert not r['suppliers']
+
+
+def test_catalog_candidates_comparison_and_quotes():
+    import hashlib
+    with TestClient(app) as c:
+        catalog=c.get('/api/companies').json()
+        assert next(x for x in catalog if x['ticker']=='AMBQ')['coverage_status']=='pending_review'
+        queue=c.get('/api/review-queue').json()['candidates']
+        assert len(queue)==3
+        for row in queue:
+            assert row['semantic_review_status']=='pending_review' and row['reviewer'] is None
+            assert row['extracted_text'][row['quote_start']:row['quote_end']]==row['verbatim_quote']
+            assert hashlib.sha256(row['extracted_text'].encode()).hexdigest()==row['snapshot_hash']
+        d=c.get('/api/compare?left=nvda&right=AMD').json()
+        assert d['shared_supplier_ids']==['TSMC']
+        assert len(d['companies'][0]['relationships'])==1
+        d=c.get('/api/compare?left=AMBQ&right=INTC').json()
+        assert all(not x['relationships'] for x in d['companies'])
+        assert d['shared_supplier_ids']==[]
+        q=c.get('/api/quotes?tickers=NVDA,NVDA,AMD').json()['quotes']
+        assert len(q)==2 and all(x['price'] is None and x['as_of'] is None and x['status']=='unavailable' for x in q)
+        assert c.get('/api/compare?left=bad!&right=AMD').status_code==422
