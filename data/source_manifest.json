@@ -22,5 +22,32 @@
     "filing_date": "2025-12-18",
     "fiscal_period_end": "2025-11-02",
     "source_hash": "1e8a551eb32706266bd83fe354d485fe7251c78a9d02fb7b38caa5b406189cf2"
+  },
+  {
+    "issuer_id": "AMBQ",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526094004/ambq-20251231.htm",
+    "filing_date": "2026-03-05",
+    "fiscal_period_end": "2025-12-31",
+    "source_hash": "c252016b99d2d8ad4ad1c5d6f9ee2cc40713c5dab28f9fd0f9832e0958d8c9df",
+    "snapshot_hash": "0ccbb23c49499719534cd27de6b094f56027292c708099b12b74bcd3ec71295e",
+    "semantic_review_status": "pending_review"
+  },
+  {
+    "issuer_id": "ALGM",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/866291/000119312526233537/algm-20260327.htm",
+    "filing_date": "2026-05-21",
+    "fiscal_period_end": "2026-03-27",
+    "source_hash": "4cb1fe13a53897813f533d75478ac12a01746e6998fc040ee1c59c05d351278d",
+    "snapshot_hash": "3abc0124c0b51c25c5fdefee877af7e748189cb8d74b2b257416f8538c2d3797",
+    "semantic_review_status": "pending_review"
+  },
+  {
+    "issuer_id": "CRUS",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/772406/000077240626000018/crus-20260328.htm",
+    "filing_date": "2026-05-21",
+    "fiscal_period_end": "2026-03-28",
+    "source_hash": "0c6132f5af4fbede117dc4878299eb5d31fefdf9994a1cce7d564bf098f3863d",
+    "snapshot_hash": "c32b16b99a0a887ed58885969258fa7be7142b49e41b8bd336ec0e17daa22c89",
+    "semantic_review_status": "pending_review"
   }
 ]

@@ -1,33 +1,22 @@
-# Build checkpoint — September 26, 2026
+> Latest editorial implementation and assessment counts: [EDITORIAL_RELEASE.md](EDITORIAL_RELEASE.md). Earlier details below describe the prior checkpoint.
 
-## Verified in this session
+> Public deployment is now verified. See [DEPLOYMENT_RESULT.md](DEPLOYMENT_RESULT.md) for current hosting status. The following records the build checkpoint.
 
-- Supplied dependencies installed in an isolated Python 3.13.1 environment.
-- All 21 backend/API/evidence tests passed; one upstream Starlette test-client deprecation warning.
-- All 10 browser check groups passed, with no JavaScript errors.
-- Fresh desktop, 1280px and 390px screenshots; desktop inspected.
-- Three supplier interpretations reconfirmed against live SEC text. See submission/SOURCE_REVIEW.md.
-- Added macOS launcher and GitHub Actions workflow. GitHub Actions run 36253839073 passed on Python 3.12/Linux.
-- Prepared Devpost copy and a three-minute presentation script.
+# Build status — 2026-09-26
 
-## External access and remaining work
+Implemented premium navy/teal workspace, responsive portfolio editor, evidence graph with supplier focus, source inspector, 23-company search, coverage browser, separate pending review queue, comparisons, local save/restore and honest unavailable quote state. Original FastAPI architecture and source-reviewed evidence preserved.
 
-- User selected GitHub account CEO2828. Repository URL is confirmed; 35 source/configuration/documentation files published to main at bf72ce03bc3f765107374d026acf432446f8b4cd.
-- User reports Atlas is set up in Safari. Safari control is working; existing Atlas database user is visible. Corrected credentials verified; three relationships written and read back, and app reads from Atlas.
-- DigitalOcean was dropped at the user's request on September 26 because it requires a billing method. Its deployment template and prize target are removed. No paid hosting is authorized; a no-payment replacement remains unconfirmed. Use the local demo in the meantime.
-- User confirmed 18+ API eligibility. Gemini CLI extraction implemented; 25 local tests pass. Corrected key works; competitor-only live smoke test passed. Broader evaluation remains limited.
-- Human semantic sign-off, event URL, team details, category eligibility and final submission remain pending.
-- Docker is unavailable on this machine; container build is untested.
+Verified:
+- 26 backend tests passed (one upstream Starlette/httpx deprecation warning).
+- 14 Chromium browser check groups passed: default and edited arithmetic, all three distinct evidence cards, Broadcom denominator, removal/reset, keyboard, invalid/zero inputs, retry, unsupported/duplicate holdings, save/restore, coverage search, comparison, quote failure and synthetic supplier overlap.
+- No browser page errors; no horizontal page overflow at 320, 390, 768, 1280 and 1440 px. Desktop, mobile, coverage and comparison screenshots visually inspected.
+- Redesigned local service read actual Atlas evidence. Fresh browser session completed Reveal, all three Atlas source cards and removal/reset. Safe proof stored in artifacts/atlas-redesign-proof.json.
+- Short silent backup browser recording saved in artifacts/BLINDSPOT_backup.webm. Three-minute narration and recording checklist supplied separately.
 
-The local app is verified. Public hosting, live Atlas, live extraction, and event submission are not complete.
+Data: 23 SEC-verified company identities. Approved analysis remains 3 companies / 3 relationships / 1 TSMC supplier. Three source-matched pending candidates (AMBQ, ALGM, CRUS) are kept outside approved evidence. Existing AI review provenance is honest; no human approval fabricated. Full primary HTML and SEC filing-index metadata were checked for the three candidates. Quotes unavailable; manufacturing models not indexed.
 
-## Verified live integration update — September 26, 2026
+Deployment: not public. Render Safari session reached /login. Free Docker configuration and exact deployment instructions are ready. No payment method or resource created. Docker image build not executed because Docker is unavailable locally. Current local preview: http://127.0.0.1:8001. This is not persistent hosting.
 
-- Corrected credentials successfully authenticated to Atlas and Gemini.
-- Atlas publisher wrote and read back all three source-checked relationships.
-- Restarted local server; `/health` reports `database: connected`, `data_mode: atlas`.
-- Gemini live competitor-only smoke test passed with zero relationships.
-- Credentials remain in ignored local `.env`; no secrets added to source or proof reports.
+Security: exposed earlier credentials need rotation before public deployment. Runtime should use a database read-only account; current account least-privilege status is not certified. No secrets committed or included in delivery ZIP. No Gemini calls during this handoff; preserved CLI tooling is not a claim of completed live extraction. DigitalOcean remains dropped.
 
-- Live browser smoke passed: Atlas footer, $6,000 connected allocation, NVIDIA evidence.
-- Supplier extraction requests exceeded the smoke-test window and were stopped; no Gemini candidates were published. Added explicit 45-second request timeout and disabled retries to bound future calls.
+Remaining owner actions: sign into an eligible card-free host, personally rotate exposed credentials and provide least-privilege deployment access if enabling Atlas publicly, confirm candidate semantics before expanding approved coverage, and supply final team/event/video fields for submission. The core cache demo can be hosted without Atlas credentials. No submission or prize eligibility claim is made.

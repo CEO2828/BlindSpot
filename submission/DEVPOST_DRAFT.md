@@ -1,42 +1,22 @@
-# BLINDSPOT
-
-## Tagline
-Different investments can share the same supplier. See the connections and inspect the evidence.
+# BLINDSPOT — draft, not submitted
 
 ## Inspiration
-A portfolio can contain several company names while sharing a supplier underneath. We wanted to make those disclosed connections easier to explore without turning them into unsupported predictions.
+Different investments can share the same supplier. We built a way to inspect those disclosed connections instead of turning them into unsupported predictions.
 
 ## What it does
-BLINDSPOT maps an example portfolio of NVIDIA, AMD, and Broadcom to their disclosed TSMC manufacturing relationships. Users can inspect filing excerpts, see source dates and product scope, edit allocations, and remove or restore holdings. The default example shows $6,000 of a $10,000 portfolio in companies with an indexed TSMC relationship. The remaining $4,000 stays visibly unassessed and remains in the denominator.
-
-The connected amount describes holdings in linked companies. It is not an estimate of money at risk, expected loss, or the portion of a company's revenue attributable to that supplier.
+BLINDSPOT combines a portfolio editor, supplier network and source inspector. The default $10,000 portfolio has $6,000 invested in NVIDIA, AMD and Broadcom, all with indexed TSMC relationships. Users can edit allocations, inspect each filing, save locally, browse 23 company identities and compare reviewed disclosures. Three new source candidates remain visibly pending review.
 
 ## How we built it
-Python and FastAPI serve a responsive HTML/CSS/JavaScript interface. The backend validates inputs and calculates allocations in integer cents. Relationships link to bounded source excerpts with hashes and exact quote offsets. The current dataset is an AI-assisted, source-checked seed based on SEC filings. A MongoDB Atlas storage adapter and DigitalOcean deployment template are included; live use must be verified before claiming those integrations.
+Python/FastAPI, Pydantic, HTML/CSS/JavaScript and PyMongo. Arithmetic uses integer cents; evidence includes source hashes and bounded exact excerpts. Live Atlas reads were executed successfully in the redesigned local app. A labeled cache preserves functionality during outages. No AI or price service is required for Reveal.
 
-## Challenges
-The most important challenge was preserving the meaning of the evidence. A manufacturing percentage has its own denominator and period. We keep it separate from portfolio arithmetic. Missing coverage remains unassessed, duplicated relationships do not double-count an allocation, and model candidates remain pending semantic review.
+## Challenges and learning
+We separated searchable identities from actual evidence coverage, quote matching from semantic review, and manufacturing percentages from portfolio allocation. Missing coverage cannot be treated as independence. The new interface makes these distinctions visible while keeping the main workflow simple.
 
-## Accomplishments
-The local application passes 21 backend tests and 10 browser check groups. Those checks cover portfolio arithmetic, evidence integrity, input validation, outage labeling, keyboard interaction, mobile layout, and recovery after failed requests.
+## Validation
+26 backend tests and browser checks cover arithmetic, sources, validation, pending exclusion, search, comparison, save/restore, quote outages, keyboard access and responsive layouts. Current published coverage: 3 companies, 3 relationships, 1 supplier. New candidates are not included in those counts.
 
-## What we learned
-Traceability matters as much as a compelling visualization. Showing source context, coverage limits, and the actual storage mode makes the result easier to inspect and explain.
+## Limits and disclosure
+AI assisted implementation and source inspection. Existing evidence is AI-assisted source-reviewed with no invented human sign-off. No Gemini calls were made during this handoff; no completed live AI integration is claimed. Quotes are unavailable. DigitalOcean is dropped. Public hosting remains pending account access; do not describe localhost as a public site. No prize eligibility has been verified.
 
-## What's next
-Expand reviewed company and supplier coverage, verify live Atlas and hosting, evaluate an eligible extraction provider on held-out passages, and improve the review workflow.
-
-## Built with
-Python, FastAPI, Pydantic, HTML, CSS, JavaScript, PyMongo, pytest, Playwright.
-
-## Contribution disclosure
-AI assisted with implementation, architecture, testing, documentation, and source inspection. Filing passages belong to the linked issuers' public SEC reports. Gemini extraction has not run. No live Atlas or DigitalOcean deployment claim is made in this draft.
-
-## Required before submission
-- Team member names and the intended event/Devpost project URL.
-- Repository URL and public app URL after publishing.
-- Demo video upload URL.
-- Confirm category eligibility and actual deadline on the event page.
-- Update integration claims only after live execution is verified.
-
-This is prepared copy, not a submitted entry.
+## Submission fields still supplied by owner
+Team names, event entry URL/category eligibility/deadline, final narrated video URL, public demo URL after deployment. Repository: https://github.com/CEO2828/BlindSpot (currently private; do not change visibility without an explicit decision).

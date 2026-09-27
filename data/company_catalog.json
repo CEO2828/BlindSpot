@@ -1,0 +1,213 @@
+{
+  "retrieved_at": "2026-09-26",
+  "source_hash": "934b2cf31597017f4da5dbf1da2a717fa03fc1a240e6cfa219f0289788f7c5e2",
+  "companies": [
+    {
+      "entity_id": "NVDA",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "legal_name": "NVIDIA CORP",
+      "cik": "1045810",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "AMD",
+      "ticker": "AMD",
+      "name": "AMD",
+      "legal_name": "ADVANCED MICRO DEVICES INC",
+      "cik": "2488",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "AVGO",
+      "ticker": "AVGO",
+      "name": "Broadcom",
+      "legal_name": "Broadcom Inc.",
+      "cik": "1730168",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "QCOM",
+      "ticker": "QCOM",
+      "name": "Qualcomm",
+      "legal_name": "QUALCOMM INC/DE",
+      "cik": "804328",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "INTC",
+      "ticker": "INTC",
+      "name": "Intel",
+      "legal_name": "INTEL CORP",
+      "cik": "50863",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "ALGM",
+      "ticker": "ALGM",
+      "name": "Allegro MicroSystems",
+      "legal_name": "ALLEGRO MICROSYSTEMS, INC.",
+      "cik": "866291",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "CRUS",
+      "ticker": "CRUS",
+      "name": "Cirrus Logic",
+      "legal_name": "CIRRUS LOGIC, INC.",
+      "cik": "772406",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "CRDO",
+      "ticker": "CRDO",
+      "name": "Credo",
+      "legal_name": "Credo Technology Group Holding Ltd",
+      "cik": "1807794",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "AMBQ",
+      "ticker": "AMBQ",
+      "name": "Ambiq",
+      "legal_name": "Ambiq Micro, Inc.",
+      "cik": "1500412",
+      "exchange": "NYSE",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "MXL",
+      "ticker": "MXL",
+      "name": "MaxLinear",
+      "legal_name": "MAXLINEAR, INC",
+      "cik": "1288469",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "SIMO",
+      "ticker": "SIMO",
+      "name": "Silicon Motion",
+      "legal_name": "Silicon Motion Technology CORP",
+      "cik": "1329394",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "AMBA",
+      "ticker": "AMBA",
+      "name": "Ambarella",
+      "legal_name": "AMBARELLA INC",
+      "cik": "1280263",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "SONY",
+      "ticker": "SONY",
+      "name": "Sony",
+      "legal_name": "Sony Group Corp",
+      "cik": "313838",
+      "exchange": "NYSE",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "SWKS",
+      "ticker": "SWKS",
+      "name": "Skyworks",
+      "legal_name": "SKYWORKS SOLUTIONS, INC.",
+      "cik": "4127",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "SLAB",
+      "ticker": "SLAB",
+      "name": "Silicon Labs",
+      "legal_name": "SILICON LABORATORIES INC.",
+      "cik": "1038074",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "QRVO",
+      "ticker": "QRVO",
+      "name": "Qorvo",
+      "legal_name": "Qorvo, Inc.",
+      "cik": "1604778",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "RMBS",
+      "ticker": "RMBS",
+      "name": "Rambus",
+      "legal_name": "RAMBUS INC",
+      "cik": "917273",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "HIMX",
+      "ticker": "HIMX",
+      "name": "Himax",
+      "legal_name": "Himax Technologies, Inc.",
+      "cik": "1342338",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "AAPL",
+      "ticker": "AAPL",
+      "name": "Apple",
+      "legal_name": "Apple Inc.",
+      "cik": "320193",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "MRVL",
+      "ticker": "MRVL",
+      "name": "Marvell",
+      "legal_name": "Marvell Technology, Inc.",
+      "cik": "1835632",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "NXPI",
+      "ticker": "NXPI",
+      "name": "NXP",
+      "legal_name": "NXP Semiconductors N.V.",
+      "cik": "1413447",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "TXN",
+      "ticker": "TXN",
+      "name": "Texas Instruments",
+      "legal_name": "TEXAS INSTRUMENTS INC",
+      "cik": "97476",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "entity_id": "MU",
+      "ticker": "MU",
+      "name": "Micron",
+      "legal_name": "MICRON TECHNOLOGY INC",
+      "cik": "723125",
+      "exchange": "Nasdaq",
+      "identity_source": "https://www.sec.gov/files/company_tickers_exchange.json"
+    }
+  ]
+}

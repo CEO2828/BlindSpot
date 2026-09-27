@@ -1,11 +1,12 @@
 from contextlib import asynccontextmanager
 from pathlib import Path
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Query
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from app.models import AnalysisInput
+from app.services.catalog import catalog, compare, review_queue, peers
 from app.services.analysis import analyze
 from app.services.store import EvidenceStore
 from app.services.evidence import reviewed_relationships
@@ -55,19 +56,21 @@ def health(request: Request):
 @app.get('/api/companies')
 def companies(request: Request):
     bundle, _, _ = request.app.state.store.read()
-    docs = {d['issuer_id']: d for d in bundle['documents']}
-    reviewed = {r['issuer_id'] for r in reviewed_relationships(bundle)}
-    return [{'entity_id': e['entity_id'], 'ticker': e['ticker'], 'name': e['canonical_name'],
-             'coverage_status': 'reviewed' if e['entity_id'] in reviewed else docs.get(e['entity_id'], {}).get('coverage_status', 'unsupported'),
-             'document_id': docs.get(e['entity_id'], {}).get('document_id'),
-             'fiscal_period_end': docs.get(e['entity_id'], {}).get('fiscal_period_end')}
-            for e in bundle['entities'] if e.get('ticker')]
+    return catalog(bundle)
 
 
 @app.post('/api/analyze')
 def analysis(payload: AnalysisInput, request: Request):
     bundle, mode, warnings = request.app.state.store.read()
-    return analyze(payload, bundle, mode, warnings)
+    result = analyze(payload, bundle, mode, warnings)
+    identities = {c["ticker"]: c for c in catalog(bundle)}
+    for holding in result["holdings"]:
+        identity = identities.get(holding["ticker"])
+        if identity:
+            holding["name"] = identity["name"]
+            if holding["coverage_status"] == "unsupported":
+                holding["coverage_status"] = identity["coverage_status"]
+    return result
 
 
 @app.get('/api/evidence/{relationship_id}')
@@ -81,3 +84,29 @@ def evidence(relationship_id: str, request: Request):
     return {**row, **{k: doc.get(k) for k in ('form', 'filing_date', 'fiscal_period_end', 'source_url', 'source_hash', 'snapshot_hash', 'snapshot_scope', 'extracted_text', 'extraction_model', 'extraction_run_at')},
             'company_name': entities[row['issuer_id']], 'supplier_name': entities[row['supplier_id']],
             'quote': row['verbatim_quote'], 'data_mode': mode, 'warnings': warnings}
+
+
+@app.get('/api/compare')
+def comparison(request: Request, left: str = Query(..., pattern=r'^[A-Za-z0-9.\-]{1,12}$'), right: str = Query(..., pattern=r'^[A-Za-z0-9.\-]{1,12}$')):
+    bundle, mode, _ = request.app.state.store.read()
+    return compare(left.upper(), right.upper(), bundle, mode)
+
+
+@app.get('/api/review-queue')
+def candidates():
+    return review_queue()
+
+
+@app.get('/api/quotes')
+def quotes(tickers: str = Query('', max_length=390, pattern=r'^[A-Za-z0-9.,\-]*$')):
+    symbols = list(dict.fromkeys(t.upper() for t in tickers.split(',') if t))
+    if len(symbols) > 30 or any(len(t) > 12 for t in symbols):
+        raise HTTPException(422, 'At most 30 valid tickers are allowed.')
+    return {'quotes': [{'ticker': t, 'price': None, 'currency': None, 'as_of': None, 'source': None, 'status': 'unavailable'} for t in symbols],
+            'reason': 'No market-data provider is configured. Manual USD holdings drive calculations.'}
+
+
+@app.get('/api/peers')
+def peer_discovery(request: Request, ticker: str = Query(..., pattern=r'^[A-Za-z0-9.\-]{1,12}$')):
+    bundle, mode, _ = request.app.state.store.read()
+    return peers(ticker.upper(), bundle, mode)
