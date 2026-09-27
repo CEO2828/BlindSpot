@@ -1,3 +1,5 @@
+> Latest editorial implementation and assessment counts: [EDITORIAL_RELEASE.md](EDITORIAL_RELEASE.md). Earlier details below describe the prior checkpoint.
+
 # BLINDSPOT
 
 Different stocks. Shared suppliers. Explore the public disclosures behind portfolio connections.

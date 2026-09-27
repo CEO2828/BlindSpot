@@ -6,7 +6,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from app.models import AnalysisInput
-from app.services.catalog import catalog, compare, review_queue
+from app.services.catalog import catalog, compare, review_queue, peers
 from app.services.analysis import analyze
 from app.services.store import EvidenceStore
 from app.services.evidence import reviewed_relationships
@@ -104,3 +104,9 @@ def quotes(tickers: str = Query('', max_length=390, pattern=r'^[A-Za-z0-9.,\-]*$
         raise HTTPException(422, 'At most 30 valid tickers are allowed.')
     return {'quotes': [{'ticker': t, 'price': None, 'currency': None, 'as_of': None, 'source': None, 'status': 'unavailable'} for t in symbols],
             'reason': 'No market-data provider is configured. Manual USD holdings drive calculations.'}
+
+
+@app.get('/api/peers')
+def peer_discovery(request: Request, ticker: str = Query(..., pattern=r'^[A-Za-z0-9.\-]{1,12}$')):
+    bundle, mode, _ = request.app.state.store.read()
+    return peers(ticker.upper(), bundle, mode)

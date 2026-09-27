@@ -1,3 +1,5 @@
+> Latest editorial implementation and assessment counts: [EDITORIAL_RELEASE.md](EDITORIAL_RELEASE.md). Earlier details below describe the prior checkpoint.
+
 # Public deployment verified
 
 Live app: https://blindspot-36w0.onrender.com

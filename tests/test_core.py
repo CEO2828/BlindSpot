@@ -137,7 +137,7 @@ def test_catalog_candidates_comparison_and_quotes():
         catalog=c.get('/api/companies').json()
         assert next(x for x in catalog if x['ticker']=='AMBQ')['coverage_status']=='pending_review'
         queue=c.get('/api/review-queue').json()['candidates']
-        assert len(queue)==3
+        assert len(queue)==17
         for row in queue:
             assert row['semantic_review_status']=='pending_review' and row['reviewer'] is None
             assert row['extracted_text'][row['quote_start']:row['quote_end']]==row['verbatim_quote']
@@ -151,3 +151,36 @@ def test_catalog_candidates_comparison_and_quotes():
         q=c.get('/api/quotes?tickers=NVDA,NVDA,AMD').json()['quotes']
         assert len(q)==2 and all(x['price'] is None and x['as_of'] is None and x['status']=='unavailable' for x in q)
         assert c.get('/api/compare?left=bad!&right=AMD').status_code==422
+
+
+def test_assessments_are_separate_from_publication(bundle):
+    from app.services.catalog import catalog
+    rows=catalog(bundle)
+    assert len(rows)==23
+    assert sum(r['assessment_outcome']=='relationship_found' for r in rows)==14
+    assert sum(r['assessment_outcome']=='not_found_in_reviewed_scope' for r in rows)==9
+    assert sum(r['publication_state']=='approved' for r in rows)==3
+    assert sum(r['pending_count']>0 for r in rows)==13
+    assert all(r['filing_date'] and r['assessment_reason'] for r in rows)
+    with TestClient(app) as c:
+        for row in rows:
+            for rid in row['evidence_ids']:
+                assert c.get('/api/evidence/'+rid).status_code==200
+        assert c.get('/api/evidence/amd-globalfoundries-20260927').status_code==404
+
+
+def test_peer_discovery_excludes_pending_and_self(bundle):
+    from app.services.catalog import peers
+    d=peers('NVDA',bundle,'local_cache')['candidates']
+    assert {r['ticker'] for r in d}=={'AMD','INTC'}
+    amd=next(r for r in d if r['ticker']=='AMD')
+    assert amd['shared']==['TSMC'] and amd['different']==[]
+    assert amd['status']=='Also shares the selected supplier'
+    assert next(r for r in d if r['ticker']=='INTC')['status']=='Insufficient coverage to compare'
+    extra=deepcopy(bundle['relationships'][1]);extra.update(relationship_id='test-other',supplier_id='OTHER')
+    bundle['entities'].append({'entity_id':'OTHER','canonical_name':'Other supplier','ticker':None})
+    bundle['relationships'].append(extra)
+    amd=next(r for r in peers('NVDA',bundle,'local_cache')['candidates'] if r['ticker']=='AMD')
+    assert amd['status']=='Different disclosed supplier identified'
+    assert amd['shared']==['TSMC'] and amd['different']==['OTHER']
+    assert peers('UNKNOWN',bundle,'local_cache')['candidates']==[]

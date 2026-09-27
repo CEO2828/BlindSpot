@@ -1,3 +1,5 @@
+> Latest editorial implementation and assessment counts: [EDITORIAL_RELEASE.md](EDITORIAL_RELEASE.md). Earlier details below describe the prior checkpoint.
+
 > Public deployment is now verified. See [DEPLOYMENT_RESULT.md](DEPLOYMENT_RESULT.md) for current hosting status. The following records the build checkpoint.
 
 # Build status — 2026-09-26
